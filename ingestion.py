@@ -16,6 +16,7 @@ for file_path in directory.iterdir():
         df = pd.read_csv(file_path)
         print(f'number of records: {len(df)}')
         print(f'writing {file_name} table to db')
+        df = df.rename(columns={'Unnamed: 0': 'cve_id'})
         df.to_sql(file_name, con=engine, if_exists='replace', index=False)
         print(f'finished writing {file_name} table to db\n')
 
